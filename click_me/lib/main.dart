@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: .fromSeed(seedColor: const Color.fromARGB(255, 172, 11, 11)),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -55,6 +55,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int count = 1;
 
   void _incrementCounter() {
     setState(() {
@@ -63,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _counter += count;
     });
   }
 
@@ -104,10 +105,50 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
+            const Text('Total #:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            DropdownButton<int>(
+              value: count,
+              items: const [
+                DropdownMenuItem(
+                  value: 1,
+                  child: Text('1'),
+                ),
+                  DropdownMenuItem(
+                  value: 10,
+                  child: Text('10'),
+                ),
+                DropdownMenuItem(
+                  value: 100,
+                  child: Text('100'),
+                ),
+                DropdownMenuItem(
+                  value: 1000,
+                  child: Text('1000'),
+                ),
+                DropdownMenuItem(
+                  value: 10000,
+                  child: Text('10000'),
+                ),
+                DropdownMenuItem(
+                  value: 100000,
+                  child: Text('100000'),
+                ),
+                DropdownMenuItem(
+                  value: 1000000,
+                  child: Text('1000000'),
+                ),
+              ],
+              onChanged: (value) {
+                if (value != null) {
+                  setState() {
+                    count = value;
+                  });
+                }
+              },
             ),
           ],
         ),
@@ -117,6 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+      
     );
   }
 }
