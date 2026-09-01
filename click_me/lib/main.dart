@@ -144,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
               onChanged: (value) {
                 if (value != null) {
-                  setState() {
+                  setState(() {
                     count = value;
                   });
                 }
